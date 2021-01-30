@@ -5,7 +5,6 @@
         "essential": true,
         "portMappings": [
             {
-                "hostPort": 80,
                 "containerPort": 80
             }
         ],
@@ -20,7 +19,8 @@
         },
         "dockerLabels": {
             "traefik.enable": "true",
-            "traefik.http.routers.backend.rule": "Host(`${alb_dns}`)"
+            "traefik.http.routers.backend.rule": "Host(`${alb_dns}`)",
+            "traefik.http.routers.backend.entrypoints": "web"
         }
     }
 ]

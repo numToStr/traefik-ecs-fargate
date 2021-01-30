@@ -13,22 +13,12 @@
             "--entryPoints.web.address=:80",
             "--providers.ecs.region=${region}",
             "--providers.ecs.clusters=${cluster_name}",
-            "--providers.ecs.exposedByDefault=false"
-        ],
-        "environment": [
-            {
-                "name": "CLUSTER_NAME",
-                "value": "${cluster_name}"
-            }
+            "--providers.ecs.exposedByDefault=true"
         ],
         "portMappings": [
             {
                 "hostPort": 80,
                 "containerPort": 80
-            },
-            {
-                "containerPort": 8080,
-                "hostPort": 8080
             }
         ],
         "logConfiguration": {
@@ -39,6 +29,9 @@
                 "awslogs-region": "${region}",
                 "awslogs-stream-prefix": "ecs"
             }
+        },
+        "dockerLabels": {
+            "traefik.enable": "false"
         }
     }
 ]
